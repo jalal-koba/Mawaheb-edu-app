@@ -1,0 +1,31 @@
+
+
+{
+  "project_info": {
+    "project_number": "535525259593",
+    "project_id": "mawahb-c2ba3",
+    "storage_bucket": "mawahb-c2ba3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535525259593:android:c0a8a0d6cb04c929664298",
+        "android_client_info": {
+          "package_name": "com.icr.mawahb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT_jpo-6p4V0RQorzSY7NgyetynRo23pE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,42 @@
+ 
+ 
+04. pass only object inestaed variable  ..
+ 
+06. change date picker  
+
+07. shimmert for  teacher and books  
+
+ 
+
+11. open image when click on file on lesson //
+
+hero in app
+
+ 
+ on refreash in app 
+  
+ 
+
+ 
+ 
+
+ 
+
+// notififactoin llink latest courses trainer file card in lesson date  in signup
+
+
+
+to do :
+
+.1 file card
+.2 book card
+.3 course screen code  
+.4 lesson screen code
+.5 shadow for app bar in abb
+.6 app icon // done
+  //
+
+  notifications 
+  add result in filare 
+  result in success dialog is it ?
+  test teacher
