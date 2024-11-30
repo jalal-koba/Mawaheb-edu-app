@@ -2,6 +2,7 @@ import 'package:easy_url_launcher/easy_url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:sizer/sizer.dart';
 import 'package:talents/Apis/network.dart';
 import 'package:talents/Constant/app_text_styles.dart';
@@ -10,6 +11,7 @@ import 'package:talents/Constant/images.dart';
 import 'package:talents/Constant/public_constant.dart';
 import 'package:talents/Modules/Auth/Cubit/auth_cubit.dart';
 import 'package:talents/Modules/Auth/Cubit/profile_cubit.dart';
+import 'package:talents/Modules/Auth/View/Screens/forget_password_screen.dart';
 import 'package:talents/Modules/Auth/View/Screens/sign_up_screen.dart';
 import 'package:talents/Modules/Auth/View/Widgets/auth_scaffold.dart';
 import 'package:talents/Modules/Home/Cubit/cubit/main_page_cubit.dart';
@@ -126,18 +128,18 @@ class LoginScreen extends StatelessWidget {
                               onTap: () {
                                 // this disabled because email is obtional in registering
 
-                                // Navigator.of(context).push(
-                                //   PageTransition(
-                                //       child: const ForgetPassword(),
-                                //       type: PageTransitionType.rightToLeft,
-                                //       duration: const Duration(milliseconds: 400)),
-                                // );
-
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => _ForgetPasswordDialog(
-                                      infoCubit: infoCubit),
+                                Navigator.of(context).push(
+                                  PageTransition(
+                                      child: const ForgetPasswordScreen(),
+                                      type: PageTransitionType.rightToLeft,
+                                      duration: const Duration(milliseconds: 400)),
                                 );
+
+                                // showDialog(
+                                //   context: context,
+                                //   builder: (context) => _ForgetPasswordDialog(
+                                //       infoCubit: infoCubit),
+                                // );
                               },
                               child: Hero(
                                 tag: "forgetpass",
@@ -157,10 +159,7 @@ class LoginScreen extends StatelessWidget {
                           ? CustomButton(
                               titlebutton: "تسجيل دخول",
                               onPressed: () {
-                                // AppSharedPreferences.saveToken(
-                                //     " {userModel?.data?.user?.token}");
-                                // AppSharedPreferences.removeIsGuest();
-
+                               
                                 login.login();
                               })
                           : const AppLoading(),

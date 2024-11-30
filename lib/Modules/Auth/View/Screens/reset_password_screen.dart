@@ -11,8 +11,8 @@ import 'package:talents/Modules/Widgets/app_loading.dart';
 import 'package:talents/Modules/Widgets/custom_button.dart';
 import 'package:talents/Modules/Widgets/custom_field.dart';
 
-class ResetPassword extends StatelessWidget {
-  const ResetPassword(
+class ResetPasswordScreen extends StatelessWidget {
+  const ResetPasswordScreen(
       {super.key, required this.verificationCode, required this.email});
   final String verificationCode;
   final String email;

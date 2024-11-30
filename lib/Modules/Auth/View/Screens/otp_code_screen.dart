@@ -9,6 +9,7 @@ import 'package:talents/Constant/app_colors.dart';
 import 'package:talents/Constant/app_text_styles.dart';
 import 'package:talents/Constant/public_constant.dart';
 import 'package:talents/Modules/Auth/Cubit/auth_cubit.dart';
+import 'package:talents/Modules/Auth/View/Screens/reset_password_screen.dart';
 import 'package:talents/Modules/Auth/View/Widgets/auth_scaffold.dart';
 import 'package:talents/Modules/Widgets/app_loading.dart';
 import 'package:talents/Modules/Widgets/custom_button.dart';
@@ -42,16 +43,20 @@ class OtpCodeScreen extends StatelessWidget {
                       context: context, success: 0, message: state.message);
                 } else if (state is CheckCodeSuccessState) {
                   if (state.isValid) {
-                    Navigator.pop(context,
-                        {"code": authCubit.otpCode.text, "isVerified": true});
+                    if (param == "type=forget_password") {
+                      pushTo(
+                          context: context,
+                          toPage: ResetPasswordScreen(
+                            email: email,
+                            verificationCode:
+                                context.read<AuthCubit>().otpCode.text,
+                          ));
+                    } else {
+                      // this for verify email for rigestering
 
-                    // pushTo(
-                    //     context: context,
-                    //     toPage: ResetPassword(
-                    //       email: email,
-                    //       verificationCode:
-                    //           context.read<AuthCubit>().otpCode.text,
-                    //     ));
+                      Navigator.pop(context,
+                          {"code": authCubit.otpCode.text, "isVerified": true});
+                    }
                   } else {
                     customSnackBar(
                         context: context,
@@ -87,7 +92,8 @@ class OtpCodeScreen extends StatelessWidget {
                         child: OTPField(
                           authCubit: forgetPassword,
                           onCompleted: (value) {
-                            forgetPassword.checkCode(email: email, param: param);
+                            forgetPassword.checkCode(
+                                email: email, param: param);
                           },
                         ),
                       ),
@@ -104,9 +110,8 @@ class OtpCodeScreen extends StatelessWidget {
 
                         Wait(
                           onTap: () {
-                            context
-                                .read<AuthCubit>()
-                                .getVerificationCode(email: email, param: param);
+                            context.read<AuthCubit>().getVerificationCode(
+                                email: email, param: param);
                           },
                         )
                       ],
@@ -170,7 +175,7 @@ class _WaitState extends State<Wait> {
         if (seconds > 0) {
           seconds--;
           if (mounted) setState(() {});
-         } else if (seconds == 0) {
+        } else if (seconds == 0) {
           seconds = 59;
           _timer?.cancel();
           buttonActivate = true;

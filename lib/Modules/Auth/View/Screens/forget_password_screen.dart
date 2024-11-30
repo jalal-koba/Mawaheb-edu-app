@@ -11,8 +11,8 @@ import 'package:talents/Modules/Widgets/app_loading.dart';
 import 'package:talents/Modules/Widgets/custom_button.dart';
 import 'package:talents/Modules/Widgets/custom_field.dart';
 
-class ForgetPassword extends StatelessWidget {
-  const ForgetPassword({super.key});
+class ForgetPasswordScreen extends StatelessWidget {
+  const ForgetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
