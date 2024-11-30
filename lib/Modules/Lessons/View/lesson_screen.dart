@@ -17,9 +17,9 @@ import 'package:talents/Modules/Widgets/app_loading.dart';
 import 'package:talents/Modules/Widgets/app_scaffold.dart';
 import 'package:talents/Modules/Widgets/custom_button.dart';
 import 'package:talents/Modules/Widgets/try_agin.dart';
-import 'package:talents/Modules/video/video_cubit.dart';
-import 'package:talents/Modules/video/video_state.dart';
-import 'package:talents/Modules/video/video_widget.dart';
+// import 'package:talents/Modules/video/video_cubit.dart';
+// import 'package:talents/Modules/video/video_state.dart';
+// import 'package:talents/Modules/video/video_widget.dart';
 
 class LessonScreen extends StatefulWidget {
   LessonScreen({
@@ -319,11 +319,11 @@ class _LessonVideo extends StatefulWidget {
 }
 
 class _LessonVideoState extends State<_LessonVideo> {
-  VideoCubit videoCubit = VideoCubit();
+  // VideoCubit videoCubit = VideoCubit();
 
   @override
   void dispose() {
-    videoCubit.dispose();
+    // videoCubit.dispose();
     super.dispose();
   }
 
@@ -337,51 +337,51 @@ class _LessonVideoState extends State<_LessonVideo> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12), color: Colors.grey),
     );
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4.w),
-      child: Hero(
-          tag: "tag${widget.course}.id",
-          child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: BlocProvider(
-                lazy: false,
-                create: (context) => videoCubit
-                  ..setStreams(widget.lessonCubit.lesson.myVideos)
-                  ..setAudioStreams([widget.lessonCubit.lesson.audio!])
-                  ..initVideoWithAudio(),
-                child: AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: BlocBuilder<VideoCubit, VideoState>(
-                    builder: (context, state) {
-                      if (state is VideoLoadingState) {
-                        return const Center(
-                          child: CircularProgressIndicator(
-                            color: AppColors.primary,
-                          ),
-                        );
-                      }
-                      if (state is VideoErrorState) {
-                        return TryAgain(
-                          withImage: false,
-                          small: true,
-                          message: state.error,
-                          onTap: () {
-                            videoCubit
-                              ..setStreams(widget.lessonCubit.lesson.myVideos)
-                              ..setAudioStreams(
-                                  [widget.lessonCubit.lesson.audio!])
-                              ..initVideoWithAudio();
-                          },
-                        );
-                      }
+    // return Padding(
+    //   padding: EdgeInsets.symmetric(horizontal: 4.w),
+    //   child: Hero(
+    //       tag: "tag${widget.course}.id",
+    //       child: ClipRRect(
+    //           borderRadius: BorderRadius.circular(10),
+    //           child: BlocProvider(
+    //             lazy: false,
+    //             create: (context) => videoCubit
+    //               ..setStreams(widget.lessonCubit.lesson.myVideos)
+    //               ..setAudioStreams([widget.lessonCubit.lesson.audio!])
+    //               ..initVideoWithAudio(),
+    //             child: AspectRatio(
+    //               aspectRatio: 16 / 9,
+    //               child: BlocBuilder<VideoCubit, VideoState>(
+    //                 builder: (context, state) {
+    //                   if (state is VideoLoadingState) {
+    //                     return const Center(
+    //                       child: CircularProgressIndicator(
+    //                         color: AppColors.primary,
+    //                       ),
+    //                     );
+    //                   }
+    //                   if (state is VideoErrorState) {
+    //                     return TryAgain(
+    //                       withImage: false,
+    //                       small: true,
+    //                       message: state.error,
+    //                       onTap: () {
+    //                         videoCubit
+    //                           ..setStreams(widget.lessonCubit.lesson.myVideos)
+    //                           ..setAudioStreams(
+    //                               [widget.lessonCubit.lesson.audio!])
+    //                           ..initVideoWithAudio();
+    //                       },
+    //                     );
+    //                   }
 
-                      return VideoWidget2(
-                        videoCubit: context.read<VideoCubit>(),
-                      );
-                    },
-                  ),
-                ),
-              ))),
-    );
+    //                   return VideoWidget2(
+    //                     videoCubit: context.read<VideoCubit>(),
+    //                   );
+    //                 },
+    //               ),
+    //             ),
+    //           ))),
+    // );
   }
 }

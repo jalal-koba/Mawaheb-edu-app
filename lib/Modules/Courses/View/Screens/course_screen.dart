@@ -21,10 +21,10 @@ import 'package:talents/Modules/Widgets/app_loading.dart';
 import 'package:talents/Modules/Widgets/app_scaffold.dart';
 import 'package:talents/Modules/Widgets/custom_button.dart';
 import 'package:talents/Modules/Widgets/try_agin.dart';
-import 'package:talents/Modules/video/video_cubit.dart';
-import 'package:talents/Modules/video/video_state.dart';
-import 'package:talents/Modules/video/video_widget.dart';
-import 'package:talents/Modules/Youtube/youtube_cubit.dart';
+// import 'package:talents/Modules/video/video_cubit.dart'; private
+// import 'package:talents/Modules/video/video_state.dart';
+// import 'package:talents/Modules/video/video_widget.dart';
+// import 'package:talents/Modules/Youtube/youtube_cubit.dart';
 import '../Widgets/Payment_Dialogs/discount_dialog.dart';
 import '../../../Trainers/View/Widgets/trainer_in_course.dart';
 
@@ -105,9 +105,9 @@ class _CourseScreenState extends State<CourseScreen> {
                             SizedBox(
                               height: 2.h,
                             ),
-                            _IntroVideo(
-                                oneCourseCubit: oneCourseCubit,
-                                courseScreen: widget),
+                            // _IntroVideo( private
+                            //     oneCourseCubit: oneCourseCubit,
+                            //     courseScreen: widget),
                             _CourseInfo(
                                 widget: widget, oneCourseCubit: oneCourseCubit),
                           ],
@@ -291,7 +291,7 @@ class _ApplyToCertificateButton extends StatelessWidget {
                   message: "${certificate?.note}",
                 );
               },
-              background:  Colors.red[600],
+              background: Colors.red[600],
             );
           }
 
@@ -444,86 +444,86 @@ class _SliverTitle extends StatelessWidget {
   }
 }
 
-class _IntroVideo extends StatefulWidget {
-  const _IntroVideo({
-    required this.oneCourseCubit,
-    required this.courseScreen,
-  });
+// class _IntroVideo extends StatefulWidget {  // private
+//   const _IntroVideo({
+//     required this.oneCourseCubit,
+//     required this.courseScreen,
+//   });
 
-  final CourseCubit oneCourseCubit;
-  final CourseScreen courseScreen;
+//   final CourseCubit oneCourseCubit;
+//   final CourseScreen courseScreen;
 
-  @override
-  State<_IntroVideo> createState() => _IntroVideoState();
-}
+//   @override
+//   State<_IntroVideo> createState() => _IntroVideoState();
+// }
 
-class _IntroVideoState extends State<_IntroVideo> {
-  VideoCubit videoCubit = VideoCubit();
+// class _IntroVideoState extends State<_IntroVideo> {
+//   VideoCubit videoCubit = VideoCubit();
 
-  @override
-  void dispose() {
-    videoCubit.dispose();
-    super.dispose();
-  }
+//   @override
+//   void dispose() {
+//     videoCubit.dispose();
+//     super.dispose();
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    if (widget.oneCourseCubit.introVideo == null) {
-      return const SizedBox();
-    }
+//   @override
+//   Widget build(BuildContext context) {
+//     if (widget.oneCourseCubit.introVideo == null) {
+//       return const SizedBox();
+//     }
 
-    return Hero(
-        tag: widget.courseScreen.tag,
-        child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: BlocProvider(
-              lazy: false,
-              create: (context) => videoCubit
-                ..setStreams([
-                  MyVideo(
-                      link:
-                          "${Urls.storageBaseUrl}${widget.oneCourseCubit.introVideo!}",
-                      value: 0,
-                      quality: "")
-                ])
-                ..initFromNetwork2(0, Duration.zero),
-              child: AspectRatio(
-                aspectRatio: 16 / 9,
-                child: BlocBuilder<VideoCubit, VideoState>(
-                  builder: (context, state) {
-                    if (state is VideoLoadingState) {
-                      return const Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.primary,
-                        ),
-                      );
-                    }
-                    if (state is VideoErrorState) {
-                      return TryAgain(
-                        message: state.error,
-                        onTap: () {
-                          videoCubit
-                            ..setStreams([
-                              MyVideo(
-                                  link:
-                                      "${Urls.storageBaseUrl}${widget.oneCourseCubit.introVideo!}",
-                                  value: 0,
-                                  quality: "")
-                            ])
-                            ..initFromNetwork2(0, Duration.zero);
-                        },
-                      );
-                    }
+//     return Hero(
+//         tag: widget.courseScreen.tag,
+//         child: ClipRRect(
+//             borderRadius: BorderRadius.circular(10),
+//             child: BlocProvider(
+//               lazy: false,
+//               create: (context) => videoCubit
+//                 ..setStreams([
+//                   MyVideo(
+//                       link:
+//                           "${Urls.storageBaseUrl}${widget.oneCourseCubit.introVideo!}",
+//                       value: 0,
+//                       quality: "")
+//                 ])
+//                 ..initFromNetwork2(0, Duration.zero),
+//               child: AspectRatio(
+//                 aspectRatio: 16 / 9,
+//                 child: BlocBuilder<VideoCubit, VideoState>(
+//                   builder: (context, state) {
+//                     if (state is VideoLoadingState) {
+//                       return const Center(
+//                         child: CircularProgressIndicator(
+//                           color: AppColors.primary,
+//                         ),
+//                       );
+//                     }
+//                     if (state is VideoErrorState) {
+//                       return TryAgain(
+//                         message: state.error,
+//                         onTap: () {
+//                           videoCubit
+//                             ..setStreams([
+//                               MyVideo(
+//                                   link:
+//                                       "${Urls.storageBaseUrl}${widget.oneCourseCubit.introVideo!}",
+//                                   value: 0,
+//                                   quality: "")
+//                             ])
+//                             ..initFromNetwork2(0, Duration.zero);
+//                         },
+//                       );
+//                     }
 
-                    return VideoWidget2(
-                      videoCubit: context.read<VideoCubit>(),
-                    );
-                  },
-                ),
-              ),
-            )));
-  }
-}
+//                     return VideoWidget2(
+//                       videoCubit: context.read<VideoCubit>(),
+//                     );
+//                   },
+//                 ),
+//               ),
+//             )));
+//   }
+// }
 
 ///////////
 class _CourseInfo extends StatelessWidget {
